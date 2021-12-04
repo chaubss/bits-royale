@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
+* {
+  font-family: 'Cairo';
+}
+
+body {
+  background-color: #222;
+  color: white;
+}

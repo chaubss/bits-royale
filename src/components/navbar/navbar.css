@@ -1,0 +1,41 @@
+.navbar-container {
+    margin: 0px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+.navbar-logo {
+}
+
+.navbar-tokens {
+
+}
+
+.blue {
+    color: #00bcd4;
+}
+
+.navbar-container h2 {
+    margin: 0px 15px;
+    color: white;
+}
+.navbar-container h4 {
+    margin: 0px 15px;
+    color: #aaa;
+}
+
+@media screen and (max-width: 600px) {
+    .navbar-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .navbar-container h2 {
+        margin: 0px;
+    }
+    .navbar-container h4 {
+        margin: 0px;
+    }
+}

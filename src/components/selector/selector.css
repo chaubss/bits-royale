@@ -1,0 +1,21 @@
+.selector-container {
+    display: flex;
+    padding: 15px;
+    background-color: #111;
+}
+
+.selector-item {
+    color: #AAA;
+    padding: 0px 15px;
+    font-size: 1.2rem;
+    cursor:pointer
+}
+.selector-item.selected {
+    color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+    .selector-container {
+        text-align: center;
+    }
+  }
