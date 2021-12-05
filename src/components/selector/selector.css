@@ -1,7 +1,39 @@
 .selector-container {
     display: flex;
     padding: 15px;
+    
+}
+
+.selector-main-container {
+    display: flex;
     background-color: #111;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buynsell-container {
+    display: flex;
+    padding-right: 35px;
+    align-items: center;
+}
+
+.buynsell-input {
+    margin: 0px 10px;
+    opacity: 0.5;
+    height: 40px;
+    width: 200px;
+}
+
+.buynsell-button {
+    margin: 0px 10px;
+    width: 70px;
+    vertical-align: center;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #555;
+    color: #eee;
 }
 
 .selector-item {
@@ -14,8 +46,41 @@
     color: #fff;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1000px) {
     .selector-container {
         text-align: center;
     }
+    .selector-main-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .buynsell-container {
+        text-align: center;
+        display: flex;
+        padding-right: 35px;
+        padding-bottom: 25px;
+        align-items: center;
+    }
+    
+    .buynsell-input {
+        margin: 0px 10px;
+        opacity: 0.5;
+        height: 40px;
+        width: 200px;
+    }
+    
+    .buynsell-button {
+        margin: 0px 10px;
+        width: 70px;
+        vertical-align: center;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #555;
+        color: #eee;
+    }
+    
   }

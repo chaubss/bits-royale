@@ -8,6 +8,7 @@ function WinningSound() {
     return (
         <audio autoPlay="autoplay" className="player" preload="false">
             <source src="https://andyhoffman.codes/random-assets/img/slots/winning_slot.wav" />
+
         </audio>
     );
 }
@@ -15,6 +16,9 @@ function WinningSound() {
 export class App extends React.Component {
     constructor(props) {
         super(props);
+        this.winCount = 0
+        this.lossCount = 0
+        this.winningSound = null
         this.state = {
             winner: null
         }
@@ -35,15 +39,40 @@ export class App extends React.Component {
 
     static matches = [];
 
+    delay = (time) => {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+
     finishHandler(value) {
         console.log('asdfasdf')
-        App.matches.push(value);
+        var winningSound = null
 
-        if (App.matches.length === 3) {
+        if (this.props.final1 == this.props.final2 && this.props.final2 == this.props.final3) {
             const { winner } = this.state;
             const first = App.matches[0];
             let results = App.matches.every(match => match === first)
             this.setState({ winner: results });
+            this.winCount += 1;
+            if (this.winCount == 3) {
+
+                this.winCount = 0
+                this.delay(1000).then(() => {
+                    alert('You have won 20 BRC!!!')
+                    this.props.callClaim()
+                    this.props.updateBalance()
+                })
+            }
+        } else {
+            this.lossCount += 1;
+            if (this.lossCount == 3) {
+                this.delay(1000).then(() => {
+                    this.lossCount = 0
+                    if (this.props.final1 != 0 || this.props.final2 != 1 || this.props.final3 != 8) {
+                        alert('You lost!')
+                    }
+                });
+            }
         }
     }
 
@@ -53,17 +82,21 @@ export class App extends React.Component {
 
     render() {
         const { winner } = this.state;
-        let winningSound = null;
 
-        if (winner) {
-            winningSound = <WinningSound />
-            this.props.callClaim()
-            this.props.updateBalance()
-        }
+        // if (winner) {
+        //     this.winCount += 1;
+        //     if (this.winCount == 4) {
+        //         // winningSound = <WinningSound />
+        //         this.winCount = 0
+        //         this.props.callClaim()
+        //         this.props.updateBalance()
+        //     }
+
+        // }
 
         return (
             <div>
-                {winningSound}
+                {this.winningSound}
 
                 <div className="spinner-container">
                     <Spinner onFinish={this.finishHandler} final={this.props.final1} ref={(child) => { this._child1 = child; }} timer="1000" />
@@ -71,7 +104,7 @@ export class App extends React.Component {
                     <Spinner onFinish={this.finishHandler} final={this.props.final3} ref={(child) => { this._child3 = child; }} timer="2200" />
                     <div className="gradient-fade"></div>
                 </div>
-                <button className="spin-again-button" onClick={this.handleClick}>Spin!</button>
+                <button className="spin-again-button" onClick={this.handleClick}>{this.props.label}</button>
             </div>
         );
     }

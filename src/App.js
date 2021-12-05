@@ -74,8 +74,8 @@ function App() {
   return (
     <div className="App">
       <Navbar connectedAccount={connectedAccount} balance={balance} />
-      <Selector setSelected={setSelected} />
-      {selected == 0 ? <Blackjack /> : selected == 1 ? <SlotMachine tokenContract={brcContract} smContract={slotMachineContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} /> : <Roulette />}
+      <Selector setSelected={setSelected} connectedAccount={connectedAccount} updateBalance={getBRCBalance} contract={brcContract} saleContract={brcSaleContract} />
+      {selected == 0 ? <SlotMachine tokenContract={brcContract} smContract={slotMachineContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} /> : <Roulette />}
     </div>
   );
 }
