@@ -5,7 +5,7 @@ import Selector from './components/selector/selector';
 import Roulette from "./pages/Roulette/Roulette";
 import SlotMachine from "./pages/SlotMachine/SlotMachine";
 import Blackjack from "./pages/Blackjack/Blackjack";
-import { brcContractAbi, brcSaleContractAbi, slotMachineContractAbi, brcContractAddress, brcSaleContractAddress, slotMachineContractAddress } from './pages/SlotMachine/Web3ABI'
+import { brcContractAbi, brcSaleContractAbi, slotMachineContractAbi, brcContractAddress, brcSaleContractAddress, slotMachineContractAddress, rouletteContractAbi, rouletteContractAddress } from './pages/SlotMachine/Web3ABI'
 import Web3 from 'web3';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
   const [brcContract, setBrcContract] = useState(null)
   const [brcSaleContract, setBrcSaleContract] = useState(null)
   const [slotMachineContract, setSlotMachineContract] = useState(null)
+  const [rouletteContract, setRouletteContract] = useState(null)
 
   useEffect(() => {
     initWeb3()
@@ -24,10 +25,10 @@ function App() {
     if (connectedAccount == null) {
       setBalance(0)
     }
-    if (connectedAccount != null && brcContract != null && brcSaleContract != null) {
+    if (connectedAccount != null && brcContract != null && brcSaleContract != null && rouletteContract != null) {
       getBRCBalance()
     }
-  }, [connectedAccount, brcContract, brcSaleContract, slotMachineContract])
+  }, [connectedAccount, brcContract, brcSaleContract, slotMachineContract, rouletteContract])
 
   const initWeb3 = async () => {
     try {
@@ -55,7 +56,10 @@ function App() {
         slotMachineContractAbi,
         slotMachineContractAddress
       ))
-
+      setRouletteContract(new web3.eth.Contract(
+        rouletteContractAbi,
+        rouletteContractAddress
+      ))
     } catch (error) {
       console.log(error)
     }
@@ -75,7 +79,8 @@ function App() {
     <div className="App">
       <Navbar connectedAccount={connectedAccount} balance={balance} />
       <Selector setSelected={setSelected} connectedAccount={connectedAccount} updateBalance={getBRCBalance} contract={brcContract} saleContract={brcSaleContract} />
-      {selected == 0 ? <SlotMachine tokenContract={brcContract} smContract={slotMachineContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} /> : <Roulette />}
+      {selected == 0 ? <SlotMachine tokenContract={brcContract} smContract={slotMachineContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} /> :
+        <Roulette tokenContract={brcContract} rouletteContract={rouletteContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} />}
     </div>
   );
 }

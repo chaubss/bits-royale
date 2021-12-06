@@ -38,6 +38,7 @@ function SlotMachine(props) {
         console.log('Attempting to claim')
         const tx = await props.smContract.methods.claim(props.connectedAccount).send({ from: props.connectedAccount });
         console.log(tx)
+        props.updateBalance()
     }
 
     return (

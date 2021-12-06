@@ -422,9 +422,88 @@ let slotMachineAbi = [
     }
 ]
 
+let rouletteAbi = [
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_winner",
+                "type": "address"
+            }
+        ],
+        "name": "claim",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "success",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_number",
+                "type": "uint256"
+            }
+        ],
+        "name": "spin",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "slot",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract BitsRoyaleChip",
+                "name": "_tokenContract",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "slot",
+                "type": "uint256"
+            }
+        ],
+        "name": "Spin",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "tokenContract",
+        "outputs": [
+            {
+                "internalType": "contract BitsRoyaleChip",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
+
 let brcContractAddress = '0x0a407f596b0427C9861d0C6D95d18189C744991B'
 let brcSaleContractAddress = '0xd13C1Ee5a39c6ABB578b91A602C8C0F6FC67041f'
 let slotMachineContractAddress = '0x05E28DBE030D829ffBcD8397AD92b38A7F4c6F0d'
+let rouletteContractAddress = '0xC0d67620D3fCB4708668C0fdCFDA7f33eE7d5F80'
 
 module.exports = {
     brcContractAbi: brcContractAbi,
@@ -432,5 +511,7 @@ module.exports = {
     slotMachineContractAbi: slotMachineAbi,
     brcContractAddress: brcContractAddress,
     brcSaleContractAddress: brcSaleContractAddress,
-    slotMachineContractAddress: slotMachineContractAddress
+    slotMachineContractAddress: slotMachineContractAddress,
+    rouletteContractAddress: rouletteContractAddress,
+    rouletteContractAbi: rouletteAbi
 }

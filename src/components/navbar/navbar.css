@@ -1,13 +1,27 @@
 .navbar-container {
     margin: 0px;
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: black;
 }
 
+.bits-royale-image {
+    width: 100px;
+    height: 90px;
+}
+
+.bits-royale-open-image {
+    width: 70px;
+    height: 32px;
+    padding-left: 7px;
+    margin-top: -5px;
+}
+
 .navbar-logo {
+    display: flex;
+    align-items: center;
 }
 
 .navbar-tokens {
