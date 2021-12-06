@@ -58,6 +58,7 @@ export class App extends React.Component {
 
                 this.winCount = 0
                 this.delay(1000).then(() => {
+                    this.props.setShowConfetti(true)
                     alert('You have won 20 BRC!!!')
                     this.props.callClaim()
                     this.props.updateBalance()

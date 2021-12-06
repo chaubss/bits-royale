@@ -5,6 +5,8 @@ import Selector from './components/selector/selector';
 import Roulette from "./pages/Roulette/Roulette";
 import SlotMachine from "./pages/SlotMachine/SlotMachine";
 import Blackjack from "./pages/Blackjack/Blackjack";
+import { useWindowSize, useTimeout } from 'react-use'
+import Confetti from 'react-confetti'
 import { brcContractAbi, brcSaleContractAbi, slotMachineContractAbi, brcContractAddress, brcSaleContractAddress, slotMachineContractAddress, rouletteContractAbi, rouletteContractAddress } from './pages/SlotMachine/Web3ABI'
 import Web3 from 'web3';
 
@@ -16,6 +18,9 @@ function App() {
   const [brcSaleContract, setBrcSaleContract] = useState(null)
   const [slotMachineContract, setSlotMachineContract] = useState(null)
   const [rouletteContract, setRouletteContract] = useState(null)
+  const [showConfetti, setShowConfetti] = useState(false)
+
+  const { width, height } = useWindowSize()
 
   useEffect(() => {
     initWeb3()
@@ -74,13 +79,17 @@ function App() {
         console.log(error)
       })
   }
-
+  var confetti = null
+  if (showConfetti) {
+    confetti = <Confetti width={width} height={height} className="confetti" />
+  }
   return (
     <div className="App">
       <Navbar connectedAccount={connectedAccount} balance={balance} />
       <Selector setSelected={setSelected} connectedAccount={connectedAccount} updateBalance={getBRCBalance} contract={brcContract} saleContract={brcSaleContract} />
-      {selected == 0 ? <SlotMachine tokenContract={brcContract} smContract={slotMachineContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} /> :
-        <Roulette tokenContract={brcContract} rouletteContract={rouletteContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} />}
+      {selected == 0 ? <SlotMachine tokenContract={brcContract} smContract={slotMachineContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} setShowConfetti={setShowConfetti} /> :
+        <Roulette tokenContract={brcContract} rouletteContract={rouletteContract} connectedAccount={connectedAccount} updateBalance={getBRCBalance} setShowConfetti={setShowConfetti} />}
+      {confetti}
     </div>
   );
 }

@@ -103,7 +103,8 @@ function Roulette(props) {
         props.updateBalance()
         const target = tx.events.Spin.returnValues.slot
         console.log(target)
-        setPrizeNumber(wheelNos[target])
+        // setPrizeNumber(wheelNos[target])
+        setPrizeNumber(wheelNos[betNumber])
         setMustSpin(true)
     }
 
@@ -133,6 +134,7 @@ function Roulette(props) {
                         onStopSpinning={() => {
                             setMustSpin(false)
                             if (prizeNumber === betNumber) {
+                                props.setShowConfetti(true)
                                 alert('You won 20 BRC!')
                                 claim()
                             } else {

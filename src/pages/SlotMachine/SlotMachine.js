@@ -28,9 +28,12 @@ function SlotMachine(props) {
         // Convert each element in slots to a number
         const slotsNumbers = slots.map(slot => (parseInt(slot) - 1))
         console.log(slotsNumbers)
-        setfinalIndex1(slotsNumbers[0])
-        setfinalIndex2(slotsNumbers[1])
-        setfinalIndex3(slotsNumbers[2])
+        // setfinalIndex1(slotsNumbers[0])
+        // setfinalIndex2(slotsNumbers[1])
+        // setfinalIndex3(slotsNumbers[2])
+        setfinalIndex1(8)
+        setfinalIndex2(8)
+        setfinalIndex3(8)
         setLabel('Spin! (1 BRC)')
     }
 
@@ -43,7 +46,7 @@ function SlotMachine(props) {
 
     return (
         <div>
-            <SMApp final1={finalIndex1} final2={finalIndex2} final3={finalIndex3} spinFn={spin} callClaim={callClaim} updateBalance={props.updateBalance} label={label} />
+            <SMApp final1={finalIndex1} final2={finalIndex2} final3={finalIndex3} spinFn={spin} callClaim={callClaim} updateBalance={props.updateBalance} label={label} setShowConfetti={props.setShowConfetti} />
         </div >
     )
 }
