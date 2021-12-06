@@ -103,8 +103,8 @@ function Roulette(props) {
         props.updateBalance()
         const target = tx.events.Spin.returnValues.slot
         console.log(target)
-        // setPrizeNumber(wheelNos[target])
-        setPrizeNumber(wheelNos[betNumber])
+        setPrizeNumber(wheelNos[target])
+        // setPrizeNumber(wheelNos[betNumber])
         setMustSpin(true)
     }
 
